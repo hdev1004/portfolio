@@ -2,6 +2,7 @@ import styles from "./css/main.module.css";
 import {motion} from "framer-motion";
 import { useEffect, useState } from "react";
 import { create, all } from 'mathjs';
+import MainCover from "../compoment/main/main_cover";
 
 const Main = () => {
     function solveQuadraticEquation(points) {
@@ -145,9 +146,7 @@ const Main = () => {
             
             {
                 isEnd ? (
-                    <div className={styles.main_cover}>
-                        커버
-                    </div>
+                    <MainCover/>
                 ) : (
                     <div className={styles.main_ball_container}>
                         <span style={{color: "white"}}>{x}, {y}</span>
