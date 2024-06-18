@@ -1,9 +1,10 @@
 import './App.css';
+import Main from './page/main';
 
 function App() {
   return (
     <div className="App">
-      포트폴리오
+        <Main/>
     </div>
   );
 }
