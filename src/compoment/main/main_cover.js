@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./css/main_cover.module.css";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import MatterComponent from "../matter/Matter";
 
 const MainCover = () => {
     const [isStep1, setIsStep1] = useState(false);
@@ -10,7 +11,7 @@ const MainCover = () => {
     useEffect(() => {
         setTimeout(() => {
             step1();
-        }, 1100)
+        }, 2100)
     }, []);
 
     const step1 = () => {
@@ -30,7 +31,7 @@ const MainCover = () => {
     const draw = {
         hidden: { pathLength: 0, opacity: 0 },
         visible: (i) => {
-            const delay = 0;
+            const delay = 1;
             return {
             pathLength: 1,
             opacity: 1,
@@ -81,36 +82,6 @@ const MainCover = () => {
                         꾸준히 발전해 나아가는 <b>개발자</b> 입니다.
                     </div>
 
-                    <div className={styles.main_profile_image_container} style={{position: "relative"}}>
-                        <motion.svg
-                        width="300"
-                        height="300"
-                        initial="hidden"
-                        animate="visible"
-                        style={{
-                            overflow: 'hidden',
-                            position: "relative"
-                        }}
-                        >
-                        <motion.circle
-                            style={{
-                                rotate: "-90deg"
-                            }}
-                            fill="transparent"
-                            strokeWidth="10px"
-                            strokeLinecap="round"
-                            cx="150"
-                            cy="150"
-                            r="80"
-                            stroke="lightgray"
-                            variants={draw}
-                            custom={1}
-                        />
-                        </motion.svg>
-                        <div className={styles.main_image_wrap}>
-                            <img src="/images/profile.jpg" alt="프로필" className={styles.profile_image}/>
-                        </div>
-                    </div>
                 </div>
 
 
@@ -126,7 +97,12 @@ const MainCover = () => {
                         </div>
                     </div>
                 </div>
+
+               
             </motion.div>
+
+            <MatterComponent/>
+
         </div>
     )
 }

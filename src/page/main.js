@@ -148,26 +148,52 @@ const Main = () => {
                 isEnd ? (
                     <MainCover/>
                 ) : (
-                    <div className={styles.main_ball_container}>
-                        <span style={{color: "white"}}>{x}, {y}</span>
-                        <motion.div
-                        animate={isStep4 ? {
-                            width: `5000px`,
-                            height: `5000px`,
-                            left: `-2500px`,
-                            bottom: `-2500px`,
-                            borderRadius: `100%`
-                        } : isStep3 ? {bottom: `${moveY}px`, width: `200px`, height: `200px`} : {}}
-                        style={{left: `${x - 100}px`,  bottom: `${y}px` }}
-                        transition={{
-                            duration: 1
-                        }}
-                        className={styles.main_ball}
-                        />
-                    </div>
+                    <>
+                        <div className={styles.main_ball_container}>
+                            <span style={{color: "white"}}>{x}, {y}</span>
+                            <motion.div
+                            animate={isStep4 ? {
+                                width: `5000px`,
+                                height: `5000px`,
+                                left: `-2500px`,
+                                bottom: `-2500px`,
+                                borderRadius: `100%`
+                            } : isStep3 ? {bottom: `${moveY}px`, width: `200px`, height: `200px`} : {}}
+                            style={{left: `${x - 100}px`,  bottom: `${y}px` }}
+                            transition={{
+                                duration: 1
+                            }}
+                            className={styles.main_ball}
+                            />
+
+                        </div>
+                        
+                        <div className={styles.wave_container}>
+                                <svg class={styles.waves} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                                <defs>
+                                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                                </defs>
+                                <g className={styles.parallax}>
+                                <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                                <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                                <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                                <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
+                                </g>
+                                </svg>
+                            </div>
+                    </>
+
                 )
             }
-           
+            {
+                isEnd ? (
+                    <div className={styles.main_blank}>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
            <div className={ styles.main_career}>
                 나의 경력
            </div>
