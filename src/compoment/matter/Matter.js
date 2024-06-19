@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Matter from 'matter-js';
 import styles from "./css/matter.module.css";
 
@@ -6,6 +6,7 @@ const MatterComponent = () => {
   const sceneRef = useRef(null);
   const engineRef = useRef(Matter.Engine.create());
   const renderRef = useRef(null);
+  let [globalEngine, setGlobalEngine] = useState(null);
   let engine = null;
   let render = null;
   let ground = null;
@@ -41,10 +42,8 @@ const MatterComponent = () => {
     });
 
     const box3 = Matter.Bodies.circle(window.innerWidth - 100, 200, 15, {
-        render: {
-          fillStyle: '#00bfff' // 상자 색상
-        },
-        restitution: 0.9
+      
+        restitution: 0.9,
     });
 
     const box4 = Matter.Bodies.circle(window.innerWidth - 100, 500, 15, {
@@ -53,7 +52,7 @@ const MatterComponent = () => {
       },
       restitution: 0.9
     });
-    ground = Matter.Bodies.rectangle(window.innerWidth * 2, window.innerHeight, window.innerWidth * 4, 1, { isStatic: true });
+    ground = Matter.Bodies.rectangle(window.innerWidth * 2, window.innerHeight, window.innerWidth * 4, 10, { isStatic: true });
     leftWall = Matter.Bodies.rectangle(0, window.innerHeight * 2, 1, window.innerHeight * 4, { isStatic: true });
     rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 1, window.innerHeight * 4, { isStatic: true });
     //x, y, width, height
@@ -88,8 +87,38 @@ const MatterComponent = () => {
       }
     });
 
+    /**
+     * 마우스 관련 이벤트 추가
+     */
+    const mouse = Matter.Mouse.create(render.canvas);
+    const mouseConstraint = Matter.MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: {
+          visible: false
+        }
+      }
+    });
+
+    Matter.World.add(engine.world, mouseConstraint);
+    render.mouse = mouse;
+
+    setGlobalEngine(engine)
     Matter.Engine.run(engine);
     Matter.Render.run(render);  
+  }
+
+  const canvasClick = (e) => {
+    return;
+    if(!globalEngine?.world) return;
+    console.log(e.clientX, e.clientY, globalEngine.world);
+    let circle = Matter.Bodies.circle(e.clientX, e.clientY, 15, {
+      restitution: 0.9
+    });
+    Matter.Body.setVelocity(circle, { x: 5, y: -5 }); // x 방향으로 5, y 방향으로 -5의 초기 속도
+
+    Matter.World.add(globalEngine.world, circle);
   }
 
   function handleResize() {
@@ -124,7 +153,7 @@ const MatterComponent = () => {
     }
   }, []);
 
-  return <div className={styles.matter_container} ref={sceneRef}></div>;
+  return <div className={styles.matter_container} ref={sceneRef} onClick={(e) => {canvasClick(e)}}></div>;
 };
 
 export default MatterComponent;
