@@ -60,6 +60,34 @@ const MatterComponent = () => {
 
     Matter.World.add(engine.world, [box, box2, box3, box4, ground, leftWall, rightWall]);
 
+    // 업데이트 이벤트 리스너 추가
+    Matter.Events.on(engine, 'afterUpdate', () => {
+      if ((box.position.x < -100 || box.position.x > window.innerWidth) || (box.position.y < -100 || box.position.y > window.innerHeight)) {
+        Matter.Body.setPosition(box, { x: window.innerWidth / 2, y: 0 });
+      }
+    });
+
+    // 업데이트 이벤트 리스너 추가
+    Matter.Events.on(engine, 'afterUpdate', () => {
+      if ((box2.position.x < -100 || box2.position.x > window.innerWidth) || (box2.position.y < -100 || box2.position.y > window.innerHeight)) {
+        Matter.Body.setPosition(box2, { x: window.innerWidth / 2, y: 0 });
+      }
+    });
+
+    // 업데이트 이벤트 리스너 추가
+    Matter.Events.on(engine, 'afterUpdate', () => {
+      if ((box3.position.x < -100 || box3.position.x > window.innerWidth) || (box3.position.y < -100 || box3.position.y > window.innerHeight)) {
+        Matter.Body.setPosition(box3, { x: window.innerWidth / 2, y: 0 });
+      }
+    });
+
+    // 업데이트 이벤트 리스너 추가
+    Matter.Events.on(engine, 'afterUpdate', () => {
+      if ((box4.position.x < -100 || box4.position.x > window.innerWidth) || (box4.position.y < -100 || box4.position.y > window.innerHeight)) {
+        Matter.Body.setPosition(box4, { x: window.innerWidth / 2, y: 0 });
+      }
+    });
+
     Matter.Engine.run(engine);
     Matter.Render.run(render);  
   }
