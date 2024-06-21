@@ -12,6 +12,26 @@ const MatterComponent = () => {
   let ground = null;
   let leftWall = null;
   let rightWall = null;
+  let topWall = null;
+  const [score, setScore] = useState(0);
+
+  const cnt = 10;
+
+  function getRandomHexColor() {
+    // 0부터 255 사이의 무작위 정수를 생성하여 16진수로 변환합니다.
+    const r = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+    const g = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+    const b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+    
+    // HEX 색상 코드를 반환합니다.
+    return `#${r}${g}${b}`;
+}
+
+  const randomNumber = (max) => {
+    const randomInt = Math.floor(Math.random() * max);
+    return randomInt;
+  }
+
 
   const createWorld = () => {
     engine = Matter.Engine.create();
@@ -27,66 +47,59 @@ const MatterComponent = () => {
     });
     renderRef.current = render;
 
-    const box = Matter.Bodies.circle(400, 200, 15, {
+    let balls = [];
+
+    for(let i = 0; i < cnt; i ++) {
+      let ball = Matter.Bodies.circle(randomNumber(window.innerWidth), randomNumber(window.innerHeight - 200), 25, {
         render: {
-          fillStyle: '#00bfff' // 상자 색상
+          fillStyle: getRandomHexColor() // 상자 색상
         },
         restitution: 0.9,
-        
-    });
-    const box2 = Matter.Bodies.circle(390, 500, 15, {
-        render: {
-          fillStyle: '#00bfff' // 상자 색상
-        },
-        restitution: 0.9
-    });
+        density: 50
+      });
 
-    const box3 = Matter.Bodies.circle(window.innerWidth - 100, 200, 15, {
-      
-        restitution: 0.9,
-    });
+      ball.delay = 0;
+      balls.push(ball);
+    }
 
-    const box4 = Matter.Bodies.circle(window.innerWidth - 100, 500, 15, {
-      render: {
-        fillStyle: '#00bfff' // 상자 색상
-      },
-      restitution: 0.9
-    });
+    let score_number = 0;
     ground = Matter.Bodies.rectangle(window.innerWidth * 2, window.innerHeight, window.innerWidth * 4, 10, { isStatic: true });
-    leftWall = Matter.Bodies.rectangle(0, window.innerHeight * 2, 1, window.innerHeight * 4, { isStatic: true });
-    rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 1, window.innerHeight * 4, { isStatic: true });
+    leftWall = Matter.Bodies.rectangle(0, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true });
+    rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true });
+    topWall = Matter.Bodies.rectangle(window.innerWidth * 2, 0, window.innerWidth * 4, 10, { isStatic: true });
+
+    let goalLeftWall = Matter.Bodies.rectangle(100, 100, 5, 50, {isStatic: true});
+    let goalRightWall = Matter.Bodies.rectangle(200, 100, 5, 50, {isStatic: true});
+    let gobalBottomWall = Matter.Bodies.rectangle(150, 125, 105, 5, {isStatic: true});
+
     //x, y, width, height
 
-    Matter.World.add(engine.world, [box, box2, box3, box4, ground, leftWall, rightWall]);
+    Matter.World.add(engine.world, [...balls, ground, leftWall, rightWall, topWall]);
+    Matter.World.add(engine.world, [goalLeftWall, goalRightWall, gobalBottomWall]);
 
     // 업데이트 이벤트 리스너 추가
     Matter.Events.on(engine, 'afterUpdate', () => {
-      if ((box.position.x < -100 || box.position.x > window.innerWidth) || (box.position.y < -100 || box.position.y > window.innerHeight)) {
-        Matter.Body.setPosition(box, { x: window.innerWidth / 2, y: 0 });
-      }
-    });
+      for(let i = 0; i < cnt; i ++) {
+        if ((balls[i].position.x < -100 || balls[i].position.x > window.innerWidth) || (balls[i].position.y < -100 || balls[i].position.y > window.innerHeight)) {
+          Matter.Body.setPosition(balls[i], { x: window.innerWidth / 2, y: 0 });
+          Matter.Body.setVelocity(balls[i], { x: 0, y: 0})
+        }
 
-    // 업데이트 이벤트 리스너 추가
-    Matter.Events.on(engine, 'afterUpdate', () => {
-      if ((box2.position.x < -100 || box2.position.x > window.innerWidth) || (box2.position.y < -100 || box2.position.y > window.innerHeight)) {
-        Matter.Body.setPosition(box2, { x: window.innerWidth / 2, y: 0 });
+        if(balls[i].position.y >= 95 && balls[i].position.y <= 100) {
+          balls[i].delay += 1;
+          if(balls[i].delay >= 150) {
+             //특정 이상 지났을 때
+             Matter.Body.setPosition(balls[i], { x: window.innerWidth / 2, y: 0 })
+             score_number += 1;
+             setScore(score_number);
+          }
+        } else {
+          balls[i].delay = 0;
+        }
       }
-    });
 
-    // 업데이트 이벤트 리스너 추가
-    Matter.Events.on(engine, 'afterUpdate', () => {
-      if ((box3.position.x < -100 || box3.position.x > window.innerWidth) || (box3.position.y < -100 || box3.position.y > window.innerHeight)) {
-        Matter.Body.setPosition(box3, { x: window.innerWidth / 2, y: 0 });
-      }
-    });
 
-    // 업데이트 이벤트 리스너 추가
-    Matter.Events.on(engine, 'afterUpdate', () => {
-      if ((box4.position.x < -100 || box4.position.x > window.innerWidth) || (box4.position.y < -100 || box4.position.y > window.innerHeight)) {
-        Matter.Body.setPosition(box4, { x: window.innerWidth / 2, y: 0 });
-      }
     });
-
     /**
      * 마우스 관련 이벤트 추가
      */
@@ -94,7 +107,7 @@ const MatterComponent = () => {
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
       mouse: mouse,
       constraint: {
-        stiffness: 0.2,
+        //stiffness: 0.2,
         render: {
           visible: false
         }
@@ -153,7 +166,10 @@ const MatterComponent = () => {
     }
   }, []);
 
-  return <div className={styles.matter_container} ref={sceneRef} onClick={(e) => {canvasClick(e)}}></div>;
+  return <div className={styles.matter_container} ref={sceneRef} onClick={(e) => {canvasClick(e)}}>
+    <div className={styles.score}>점수 : {score}</div>
+    <img src='/images/ball.png' alt='공' className={styles.ball}></img>
+  </div>;
 };
 
 export default MatterComponent;
