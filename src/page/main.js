@@ -3,6 +3,8 @@ import {motion} from "framer-motion";
 import { useEffect, useState } from "react";
 import { create, all } from 'mathjs';
 import MainCover from "../compoment/main/main_cover";
+import AboutMe from "../compoment/aboutMe/aboutme";
+import Career from "../compoment/career/career";
 
 const Main = () => {
     function solveQuadraticEquation(points) {
@@ -194,9 +196,9 @@ const Main = () => {
                     <></>
                 )
             }
-           <div className={ styles.main_career}>
-                나의 경력
-           </div>
+
+           <AboutMe/>
+           <Career/>
 
         </div>
     )
