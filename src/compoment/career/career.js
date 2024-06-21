@@ -1,6 +1,8 @@
+import { useState } from "react";
 import styles from "./css/career.module.css";
 
 const Career = () => {
+
     return (
         <div className={styles.career_container}>
             <div className={styles.career_menu}>
@@ -12,7 +14,7 @@ const Career = () => {
             <div id="career" className={styles.career}>
 
                 
-            <div className={styles.career_card}>
+                <div className={styles.career_card}>
                     <div className={styles.career_date}>
                         2024.03 - 2024.06
                     </div>
@@ -74,12 +76,13 @@ const Career = () => {
                     </div>
                 </div>
                 
-              
             </div>
 
             
             <div id="project" className={styles.project}>
-           
+                <div className={styles.project_card}>
+                    
+                </div>
             </div>
 
             

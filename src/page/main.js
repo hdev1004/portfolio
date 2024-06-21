@@ -147,6 +147,7 @@ const Main = () => {
         <div className={styles.main_container}>
             
             {
+                /*
                 isEnd ? (
                     <MainCover/>
                 ) : (
@@ -183,7 +184,7 @@ const Main = () => {
                                 <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
                                 </g>
                                 </svg>
-                            </div>
+                        </div>
                     </>
 
                 )
@@ -195,10 +196,12 @@ const Main = () => {
                 ) : (
                     <></>
                 )
-            }
+            */}
 
            <AboutMe/>
            <Career/>
+           <div style={{width: "100%", height: "100vh", backgroundColor: "lightblue", zIndex: 100, position: "relative"}}>
+           </div>
 
         </div>
     )

@@ -1,17 +1,33 @@
 .career_container {
     width: 100%;
-    height: 100vh;
-    position: relative;
-    z-index: 100;
+    z-index: 1000;
     background-color: white;
     color: black;
+    position: relative;
+    border: 10px solid black;
+}
+
+
+.career_menu {
+    display: flex;
+    gap: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    top: 10px;
+    position: sticky;
+    position: -webkit-sticky; /* for Safari */
+    background-color: lightgray;
 }
 
 .career {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 80%;
+    overflow: auto;
     display: flex;
     gap: 20px;
-    justify-content: center;
 
+    background-color: white;
     ul {
         margin-bottom: 15px;
 
@@ -24,6 +40,7 @@
 }
 
 .career_card {
+    background-color: white;
     border-radius: 15px;
     box-sizing: border-box;
     padding: 20px;
@@ -49,4 +66,73 @@
     margin-top: 5px;
     color: gray;
 
+}
+
+@media only screen and (min-width: 769px) {
+    .career_menu {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .career {
+        margin-left: 250px;
+        width: calc(90% - 250px);
+        overflow: auto;
+    }
+
+    .career_card {
+        min-width: 400px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .career_menu {
+        top:-10px;
+        display: flex;
+        gap: 30px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .career {
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .career_card {
+        overflow: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .career_menu {
+    }
+
+    .career {
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .career_card {
+        overflow: none;
+    }
+
+}
+
+.project {
+    width: 100%;
+    height: 100vh;
+    background-color: lightgray;
+}
+
+.education {
+    width: 100%;
+    height: 100vh;
+    background-color: aliceblue;
 }

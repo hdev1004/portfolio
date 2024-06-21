@@ -64,9 +64,9 @@ const MatterComponent = () => {
 
     let score_number = 0;
     ground = Matter.Bodies.rectangle(window.innerWidth * 2, window.innerHeight, window.innerWidth * 4, 10, { isStatic: true });
-    leftWall = Matter.Bodies.rectangle(0, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true });
-    rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true });
-    topWall = Matter.Bodies.rectangle(window.innerWidth * 2, 0, window.innerWidth * 4, 10, { isStatic: true });
+    leftWall = Matter.Bodies.rectangle(0, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true, render: {fillStyle: "#FFF"} });
+    rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true, render: {fillStyle: "#FFF"} });
+    topWall = Matter.Bodies.rectangle(window.innerWidth * 2, 0, window.innerWidth * 4, 10, { isStatic: true, render: {fillStyle: "#FFF"} });
 
     let goalLeftWall = Matter.Bodies.rectangle(100, 100, 5, 50, {isStatic: true});
     let goalRightWall = Matter.Bodies.rectangle(200, 100, 5, 50, {isStatic: true});
@@ -134,6 +134,19 @@ const MatterComponent = () => {
     Matter.World.add(globalEngine.world, circle);
   }
 
+  const handleScroll = (e) => {
+    if(e.deltaY > 0) {
+      window.scrollBy({
+        top: 30,
+      }); // 세로로 100px 스크롤 다운
+    } else {
+      window.scrollBy({
+        top: -30,
+      }); // 세로로 100px 스크롤 업
+    }
+  
+  }
+
   function handleResize() {
     // set canvas size to new values
     render.canvas.width = window.innerWidth;
@@ -166,7 +179,7 @@ const MatterComponent = () => {
     }
   }, []);
 
-  return <div className={styles.matter_container} ref={sceneRef} onClick={(e) => {canvasClick(e)}}>
+  return <div className={styles.matter_container} ref={sceneRef} onClick={(e) => {canvasClick(e)}} onWheel={(e) => {handleScroll(e)}}>
     <div className={styles.score}>점수 : {score}</div>
     <img src='/images/ball.png' alt='공' className={styles.ball}></img>
   </div>;
