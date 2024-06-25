@@ -1,5 +1,7 @@
 .main_container {
-    color: white;
+  color: white;
+  position: absolute;
+  width: 100%;
 }
 
 .main_ball_container {
@@ -24,8 +26,8 @@
     position: absolute;
     width: 100%;
     bottom: -5px;
+    background-color: black;
     background-color: transparent;
-    margin-top: 20px;
 }
 
 .main_blank {

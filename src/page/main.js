@@ -1,10 +1,11 @@
 import styles from "./css/main.module.css";
-import {motion} from "framer-motion";
+import {color, motion} from "framer-motion";
 import { useEffect, useState } from "react";
 import { create, all } from 'mathjs';
 import MainCover from "../compoment/main/main_cover";
 import AboutMe from "../compoment/aboutMe/aboutme";
 import Career from "../compoment/career/career";
+import { Sticky, StickyContainer } from "react-sticky";
 
 const Main = () => {
     function solveQuadraticEquation(points) {
@@ -145,13 +146,13 @@ const Main = () => {
 
     return (
         <div className={styles.main_container}>
-            
+           
             {
-                /*
+                
                 isEnd ? (
                     <MainCover/>
                 ) : (
-                    <>
+                    <div style={{position: "relative"}}>
                         <div className={styles.main_ball_container}>
                             <span style={{color: "white"}}>{x}, {y}</span>
                             <motion.div
@@ -185,7 +186,7 @@ const Main = () => {
                                 </g>
                                 </svg>
                         </div>
-                    </>
+                    </div>
 
                 )
             }
@@ -196,11 +197,19 @@ const Main = () => {
                 ) : (
                     <></>
                 )
-            */}
+            }
 
            <AboutMe/>
            <Career/>
+           <div style={{width: "100%", height: "100vh", backgroundColor: "lightgray", zIndex: 100, position: "relative"}}>
+                <div style={{position: "sticky", top: "10px"}}>
+                    Header
+
+                </div>
+           </div>
            <div style={{width: "100%", height: "100vh", backgroundColor: "lightblue", zIndex: 100, position: "relative"}}>
+           </div>
+           <div style={{width: "100%", height: "100vh", backgroundColor: "lightgray", zIndex: 100, position: "relative"}}>
            </div>
 
         </div>

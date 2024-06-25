@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Matter from 'matter-js';
+import Matter, { Common, Composites, Vertices } from 'matter-js';
 import styles from "./css/matter.module.css";
+import T from "../../assets/images/T.png";
+import E from "../../assets/images/E.png";
+import D from "../../assets/images/D.png";
+import Y from "../../assets/images/Y.png";
+import decomp from 'poly-decomp';
 
 const MatterComponent = () => {
   const sceneRef = useRef(null);
@@ -15,7 +20,7 @@ const MatterComponent = () => {
   let topWall = null;
   const [score, setScore] = useState(0);
 
-  const cnt = 10;
+  const cnt = 0;
 
   function getRandomHexColor() {
     // 0부터 255 사이의 무작위 정수를 생성하여 16진수로 변환합니다.
@@ -45,15 +50,60 @@ const MatterComponent = () => {
         background: "transparent"
       },
     });
+    console.log(decomp);
+    Common.setDecomp(decomp);
     renderRef.current = render;
 
     let balls = [];
 
+    let imgAlpha = [T, E, D, Y];
+
+    
+    var arrow = Vertices.fromPath('40 0 40 20 100 20 100 80 40 80 40 100 0 50'),
+      chevron = Vertices.fromPath('100 0 75 50 100 100 25 100 0 50 25 0'),
+      star = Vertices.fromPath('50 0 63 38 100 38 69 59 82 100 50 75 18 100 31 59 0 38 37 38'),
+      horseShoe = Vertices.fromPath('35 7 19 17 14 38 14 58 25 79 45 85 65 84 65 66 46 67 34 59 30 44 33 29 45 23 66 23 66 7 53 7');
+      const tShapeVertices = Vertices.fromPath('0 50 50 50 50 40 30 40 30 0 20 0 20 40 0 40 0 50');
+      const eShapeVertices = Vertices.fromPath('0 50 40 50 40 40 10 40 10 30 40 30 40 20 10 20 10 10 40 10 40 0 0 0 0 50');
+      const yShapeVertices = Vertices.fromPath('0 50 13 50 25 38 37 50 50 50 30 30 30 0 20 0 20 30 0 50');
+      const dShapeVertices = Vertices.fromPath('0 50 13 50 25 38 37 50 50 50 30 30 30 0 20 0 20 30 0 50');
+
+      var stack = Composites.stack(50, 100, 10, 10, 200, 200, function(x, y) {
+        var color = Common.choose(['#f19648', '#f5d259', '#f55a3c', '#063e7b', '#ececd1']);
+        const shape = Common.choose([tShapeVertices, eShapeVertices, yShapeVertices]);
+        return Matter.Bodies.fromVertices(x, y, shape,{
+            render: {
+                fillStyle: color,
+                strokeStyle: color,
+                lineWidth: 1,
+               
+            }
+        }, true);
+      });
+      // 개별 바디(body)의 크기 변경
+    stack.bodies.forEach(body => {
+      // 예시로 바디의 스케일(scale)을 두 배로 변경
+      Matter.Body.setAngle(body, randomNumber(100));
+      Matter.Body.scale(body, 4, 4);
+    });
+
+    Matter.Composite.add(engine.world, [stack])
+    
+
     for(let i = 0; i < cnt; i ++) {
-      let ball = Matter.Bodies.circle(randomNumber(window.innerWidth), randomNumber(window.innerHeight - 200), 25, {
+      const s = 110;
+      const scale = s / 512;
+      let ball = Matter.Bodies.rectangle(randomNumber(window.innerWidth), randomNumber(window.innerHeight - 200), 100, 100, {
         render: {
-          fillStyle: getRandomHexColor() // 상자 색상
+          fillStyle: getRandomHexColor(), // 상자 색상
+          sprite: {
+            texture: imgAlpha[i % 4], // 공 이미지를 삽입,
+            xScale: scale,
+            yScale: scale,
+            
+          },
         },
+        
         restitution: 0.9,
         density: 50
       });
@@ -68,14 +118,14 @@ const MatterComponent = () => {
     rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true, render: {fillStyle: "#FFF"} });
     topWall = Matter.Bodies.rectangle(window.innerWidth * 2, 0, window.innerWidth * 4, 10, { isStatic: true, render: {fillStyle: "#FFF"} });
 
-    let goalLeftWall = Matter.Bodies.rectangle(100, 100, 5, 50, {isStatic: true});
-    let goalRightWall = Matter.Bodies.rectangle(200, 100, 5, 50, {isStatic: true});
-    let gobalBottomWall = Matter.Bodies.rectangle(150, 125, 105, 5, {isStatic: true});
+    //let goalLeftWall = Matter.Bodies.rectangle(100, 100, 5, 50, {isStatic: true});
+    //let goalRightWall = Matter.Bodies.rectangle(200, 100, 5, 50, {isStatic: true});
+    //let gobalBottomWall = Matter.Bodies.rectangle(150, 125, 105, 5, {isStatic: true});
 
     //x, y, width, height
 
     Matter.World.add(engine.world, [...balls, ground, leftWall, rightWall, topWall]);
-    Matter.World.add(engine.world, [goalLeftWall, goalRightWall, gobalBottomWall]);
+    //Matter.World.add(engine.world, [goalLeftWall, goalRightWall, gobalBottomWall]);
 
     // 업데이트 이벤트 리스너 추가
     Matter.Events.on(engine, 'afterUpdate', () => {
@@ -180,8 +230,8 @@ const MatterComponent = () => {
   }, []);
 
   return <div className={styles.matter_container} ref={sceneRef} onClick={(e) => {canvasClick(e)}} onWheel={(e) => {handleScroll(e)}}>
-    <div className={styles.score}>점수 : {score}</div>
-    <img src='/images/ball.png' alt='공' className={styles.ball}></img>
+    {/*<div className={styles.score}>점수 : {score}</div>*/}
+    {/*<img src='/images/ball.png' alt='공' className={styles.ball}></img>*/}
   </div>;
 };
 
