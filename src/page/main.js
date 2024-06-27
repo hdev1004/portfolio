@@ -1,11 +1,10 @@
 import styles from "./css/main.module.css";
 import {color, motion} from "framer-motion";
 import { useEffect, useState } from "react";
-import { create, all } from 'mathjs';
 import MainCover from "../compoment/main/main_cover";
 import AboutMe from "../compoment/aboutMe/aboutme";
 import Career from "../compoment/career/career";
-import { Sticky, StickyContainer } from "react-sticky";
+import ReactMarkdown  from 'react-markdown'
 
 const Main = () => {
     function solveQuadraticEquation(points) {
@@ -146,7 +145,6 @@ const Main = () => {
 
     return (
         <div className={styles.main_container}>
-           
             {
                 
                 isEnd ? (
@@ -200,6 +198,8 @@ const Main = () => {
             }
 
            <AboutMe/>
+           
+           
            <Career/>
            <div style={{width: "100%", height: "100vh", backgroundColor: "lightgray", zIndex: 100, position: "relative"}}>
                 <div style={{position: "sticky", top: "10px"}}>

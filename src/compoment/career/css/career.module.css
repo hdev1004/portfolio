@@ -4,22 +4,38 @@
     background-color: white;
     color: black;
     position: relative;
-    border: 10px solid black;
 }
 
 
 .career_menu {
+    width: 150px;
+    flex-direction: column;
+    cursor: pointer;
     display: flex;
     gap: 30px;
     font-size: 20px;
     font-weight: bold;
-    top: 10px;
+    top: 20px;
+    margin-left: 50px;
     position: sticky;
     position: -webkit-sticky; /* for Safari */
-    background-color: lightgray;
+}
+
+.menu_inActive {
+    transition: 0.3s;
+    color: #b6b6b6;
+}
+
+.menu_active {
+    transition: 0.3s;
+
 }
 
 .career {
+    margin-top: -100px;
+    margin-bottom: 100px;
+    position: relative;
+    top: 0px;
     box-sizing: border-box;
     padding: 10px;
     width: 80%;
@@ -75,7 +91,7 @@
     }
 
     .career {
-        margin-left: 250px;
+        margin-left: 300px;
         width: calc(90% - 250px);
         overflow: auto;
     }
@@ -87,11 +103,14 @@
 
 @media only screen and (min-width: 601px) and (max-width: 768px) {
     .career_menu {
-        top:-10px;
+        top:20px;
         display: flex;
         gap: 30px;
         font-size: 30px;
         font-weight: bold;
+        flex-direction: row;
+        z-index: 100;
+        margin-bottom: 100px;
     }
 
     .career {
@@ -109,6 +128,15 @@
 
 @media only screen and (max-width: 600px) {
     .career_menu {
+        top:20px;
+        display: flex;
+        gap: 30px;
+        font-size: 30px;
+        font-weight: bold;
+        flex-direction: row;
+        z-index: 100;
+        margin-bottom: 100px;
+        margin-left: 30px;
     }
 
     .career {
@@ -127,8 +155,6 @@
 
 .project {
     width: 100%;
-    height: 100vh;
-    background-color: lightgray;
 }
 
 .education {
