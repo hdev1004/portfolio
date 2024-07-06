@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# 포트폴리오
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+개발자 취업준비를 위한 포트폴리오 입니다! 😊<br/>
+반응형을 통해 모바일에서도 쉽게 열람이 가능합니다!
 
-## Available Scripts
+`React` 기반으로 개발을 진행하였고, 중력관련 라이브러리는 `Matter.js` 를 참조 했습니다.
+애니메이션 기반은 `framer motion`을 사용했습니다.
 
-In the project directory, you can run:
+<br/>
+<br/>
 
-### `npm start`
+## 📕 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`React`, `Matterjs`, `framer motion`
+<br/>
+<br/>
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📕 페이지 설명
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🔖 첫 페이지
+첫 페이지에는, `저` 라는 사람은 어떤 사람인지를 표현하는 글귀와 함께 잠깐이나마 즐겁게 놀 수 있도록 인터렉티브한 페이지를 구성했습니다. <br/>
+주로 `T`, `E`, `Y` 의 영문 알파펫이 나오며, 각각은 세부적인 의미들을 담고 있습니다. <br/>
+ <br/> 
+**T** : Teamwork - 아무리 개인의 역량이 높아도 팀워크를 중시하고자 선택하게 됐습니다! <br/>
+**E** : Enthusiastic - 평소에도 열정적이며, 한번하는건 끝을 보아야 한다는 의미로 선택하게 됐습니다. <br/>
+**Y** : Yield - 어려운일이 있어도 양보하며 지낸다는 의미로 선택하게 됐습니다! <br/>
 
-### `npm run build`
+<br/>
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🔖 두번째 첫 페이지
+두번째 페이지는 개발자를 시작하게 된 이유를 담고 있습니다. <br/>
+일에 있어서 중요한 점 들과, 자기개발들을 어떻게 해왔는지를 담고 있습니다!  <br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ <br/>
+  <br/>
 
-### `npm run eject`
+### 🔖 세번째 첫 페이지
+세번째 페이지는 커리어와, 프로젝트, 교육을을 어떻게 받아왔는지를 나열해놓았습니다. <br/>
+어느 영역인지 확인하기 쉽도록 메뉴 영역을 추가해놓았습니다 <br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ <br/> <br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📕 데모
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+감사합니다 😊
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://github.com/hdev1004/portfolio/assets/59737252/8b5c9066-3807-462c-8d6a-6f40a8f8a387)
