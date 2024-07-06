@@ -66,11 +66,19 @@ const MatterComponent = () => {
       const tShapeVertices = Vertices.fromPath('0 50 50 50 50 40 30 40 30 0 20 0 20 40 0 40 0 50');
       const eShapeVertices = Vertices.fromPath('0 50 40 50 40 40 10 40 10 30 40 30 40 20 10 20 10 10 40 10 40 0 0 0 0 50');
       const yShapeVertices = Vertices.fromPath('0 50 13 50 25 38 37 50 50 50 30 30 30 0 20 0 20 30 0 50');
-      const dShapeVertices = Vertices.fromPath('0 50 13 50 25 38 37 50 50 50 30 30 30 0 20 0 20 30 0 50');
+      //const dShapeVertices = Vertices.fromPath('0 50 13 50 25 38 37 50 50 50 30 30 30 0 20 0 20 30 0 50');
 
-      var stack = Composites.stack(50, 100, 10, 10, 200, 200, function(x, y) {
+      //const starShapeVertices = Vertices.fromPath('50 15 61 35 82 35 66 50 72 71 50 60 28 71 34 50 18 35 39 35 50 15');
+      //const heartShapeVertices = Vertices.fromPath('50 30 58 20 68 20 78 30 78 40 68 50 50 70 32 50 22 40 22 30 32 20 42 20 50 30');
+      //const diamondShapeVertices = Vertices.fromPath('50 10 70 30 50 50 30 30 50 10');
+      //const arrowShapeVertices = Vertices.fromPath('20 0 80 0 80 20 100 20 50 70 0 20 20 20 20 0');
+      //const lightningBoltShapeVertices = Vertices.fromPath('30 0 50 30 40 30 60 60 40 40 50 40 30 70 50 40 40 40 60 10 40 20 50 10 30 0');
+      //const dropletShapeVertices = Vertices.fromPath('50 0 70 20 60 60 40 60 30 20 50 0');
+      //const blobShapeVertices = Vertices.fromPath('40 20 50 10 60 20 70 40 60 60 40 60 30 40 40 20');
+
+      var stack = Composites.stack(50, -window.innerHeight * 5, 10, 15, window.innerWidth / 10, window.innerWidth / 10, function(x, y) {
         var color = Common.choose(['#f19648', '#f5d259', '#f55a3c', '#063e7b', '#ececd1']);
-        const shape = Common.choose([tShapeVertices, eShapeVertices, yShapeVertices]);
+        const shape = Common.choose([ tShapeVertices, eShapeVertices, yShapeVertices]);
         return Matter.Bodies.fromVertices(x, y, shape,{
             render: {
                 fillStyle: color,
@@ -84,7 +92,7 @@ const MatterComponent = () => {
     stack.bodies.forEach(body => {
       // 예시로 바디의 스케일(scale)을 두 배로 변경
       Matter.Body.setAngle(body, randomNumber(100));
-      Matter.Body.scale(body, 4, 4);
+      Matter.Body.scale(body, 3, 3);
     });
 
     Matter.Composite.add(engine.world, [stack])
@@ -93,7 +101,7 @@ const MatterComponent = () => {
     for(let i = 0; i < cnt; i ++) {
       const s = 110;
       const scale = s / 512;
-      let ball = Matter.Bodies.rectangle(randomNumber(window.innerWidth), randomNumber(window.innerHeight - 200), 100, 100, {
+      let ball = Matter.Bodies.circle(randomNumber(window.innerWidth), randomNumber(-window.innerHeight * 3), 50, {
         render: {
           fillStyle: getRandomHexColor(), // 상자 색상
           sprite: {
@@ -113,7 +121,7 @@ const MatterComponent = () => {
     }
 
     let score_number = 0;
-    ground = Matter.Bodies.rectangle(window.innerWidth * 2, window.innerHeight, window.innerWidth * 4, 10, { isStatic: true });
+    ground = Matter.Bodies.rectangle(window.innerWidth * 2, window.innerHeight, window.innerWidth * 4, 10, { isStatic: true, render: {fillStyle: "#FFF"} });
     leftWall = Matter.Bodies.rectangle(0, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true, render: {fillStyle: "#FFF"} });
     rightWall = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight * 2, 10, window.innerHeight * 4, { isStatic: true, render: {fillStyle: "#FFF"} });
     topWall = Matter.Bodies.rectangle(window.innerWidth * 2, 0, window.innerWidth * 4, 10, { isStatic: true, render: {fillStyle: "#FFF"} });
@@ -124,18 +132,19 @@ const MatterComponent = () => {
 
     //x, y, width, height
 
-    Matter.World.add(engine.world, [...balls, ground, leftWall, rightWall, topWall]);
+    Matter.World.add(engine.world, [...balls, ground, leftWall, rightWall]);
     //Matter.World.add(engine.world, [goalLeftWall, goalRightWall, gobalBottomWall]);
 
     // 업데이트 이벤트 리스너 추가
     Matter.Events.on(engine, 'afterUpdate', () => {
       for(let i = 0; i < cnt; i ++) {
-        if ((balls[i].position.x < -100 || balls[i].position.x > window.innerWidth) || (balls[i].position.y < -100 || balls[i].position.y > window.innerHeight)) {
+        if ((balls[i].position.x < -100 || balls[i].position.x > window.innerWidth) || balls[i].position.y > window.innerHeight) {
           Matter.Body.setPosition(balls[i], { x: window.innerWidth / 2, y: 0 });
           Matter.Body.setVelocity(balls[i], { x: 0, y: 0})
         }
 
         if(balls[i].position.y >= 95 && balls[i].position.y <= 100) {
+          /*
           balls[i].delay += 1;
           if(balls[i].delay >= 150) {
              //특정 이상 지났을 때
@@ -143,6 +152,7 @@ const MatterComponent = () => {
              score_number += 1;
              setScore(score_number);
           }
+             */
         } else {
           balls[i].delay = 0;
         }

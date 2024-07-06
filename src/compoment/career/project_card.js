@@ -1,13 +1,19 @@
 import styles from "./css/project_card.module.css";
-import Card from "../../assets/images/card1.png";
 import { Modal } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ReactMarkdown from 'react-markdown';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import rehypeRaw from 'rehype-raw';
 
-const ProjectCard = () => {
+const ProjectCard = ({info}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [markdown, setMarkdown] = useState('');
 
     const showModal = () => {
         setIsModalOpen(true);
+        document.body.style.overflowY = "hidden";
+        document.querySelector("html").style.overflowY = "hidden";
     };
 
     const handleOk = () => {
@@ -16,45 +22,89 @@ const ProjectCard = () => {
 
     const handleCancel = () => {
         setIsModalOpen(false);
+        document.body.style.overflowY = "auto";
+        document.querySelector("html").style.overflowY = "auto";
     };
+
+
+    useEffect(() => {
+        fetch(`/posting/${info.fileName}`)
+        .then((response) => response.text())
+        .then((text) =>  setMarkdown(text));
+    }, [])
+    
 
     return (
         <>
             <div className={styles.project_card_container} onClick={showModal}>
-                <img src={Card} alt="사진"/>
-                <div className={styles.title}>글루따띠온</div>
-                <div className={styles.description}>MSA 구조와 BoilerPlate 적용을 위해 만들어본 '글루따띠온' 쇼핑몰 입니다.</div>
+                <img src={`/posting/${info.thumbnail}`} alt="사진"/>
+                <div className={styles.title}>{info.title}</div>
+                <div className={styles.description}>{info.subTitle}</div>
 
                 <div className={styles.tags}>
-                    <div>팀</div>
-                    <div>반응형</div>
-                    <div>사이드</div>
+                    {
+                        info.tags.map((tag) => (
+                            <div>{tag}</div>
+                        ))
+                    }
                 </div>
             </div>
             
             {
                 isModalOpen ? (
                     <>
-                    <div className={styles.project_detail_background}></div>
-                    <div className={styles.project_detail_modal}>
-                        <div className={styles.project_detail_header}>
-                            <div className={styles.project_tags}>
-                                <div>팀</div>
-                                <div>반응형</div>
-                                <div>사이드</div>
-                            </div>
-    
-                            <div className={styles.project_title}>글루따띠온</div>
-                            <div className={styles.project_date}>
-                                <div>2024.06 - 2024.07</div>
-                                <div>2인 (백엔드1명, 프론트 1명)</div>
-                            </div>
-    
-                            <div className={styles.close_btn} onClick={handleCancel}>
-                                닫기
+                        <div className={styles.project_detail_background}>
+                            <div className={styles.project_detail_modal}>
+                                <div className={styles.project_detail_header}>
+                                    <div className={styles.project_tags}>
+                                        {
+                                            info.tags.map((tag) => (
+                                                <div>{tag}</div>
+                                            ))
+                                        }
+                                    </div>
+            
+                                    <div className={styles.project_title}>{info.title}</div>
+                                    <div className={styles.project_date}>
+                                        <div>{info.date}</div>
+                                        <div>{info.team}</div>
+                                    </div>
+
+                                    <div 
+                                    className={styles.editor_container}
+                                    style={{
+                                        width: "80%",
+                                        paddingBottom: "20px"
+                                    }}>
+                                       <ReactMarkdown  rehypePlugins={[rehypeRaw]} components={{
+                                        code(props) {
+                                            const {children, className, node, ...rest} = props
+                                            const match = /language-(\w+)/.exec(className || '')
+                                            return match ? (
+                                              <SyntaxHighlighter
+                                                {...rest}
+                                                PreTag="div"
+                                                children={String(children).replace(/\n$/, '')}
+                                                language={match[1]}
+                                                style={oneLight}
+                                              />
+                                            ) : (
+                                              <code {...rest} className={className}>
+                                                {children}
+                                              </code>
+                                            )
+                                          }
+                                    
+                                       }}>{markdown}</ReactMarkdown>
+                                    </div>
+            
+                                    <div className={styles.close_btn} onClick={handleCancel}>
+                                        닫기
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                   
                     </>
                 ) : (
                     <></>

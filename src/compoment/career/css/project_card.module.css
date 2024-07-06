@@ -3,6 +3,69 @@
     box-shadow:  0px 0px 5px lightgray;
 }
 
+.editor_container {
+    img {
+        width: 30%;
+        box-shadow: 0px 0px 5px lightgray;
+        border-radius: 5px;
+    }
+}
+
+/* 코드 블럭 */
+div > code {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* 인용문 */
+blockquote {
+    margin: 0px;
+    border-left: 4px solid lightgray;
+    font-size: 20px;
+    font-weight: 500;
+    height: 35px;
+    line-height: 35px;
+
+    p {
+        margin-left: 10px;
+    }
+
+    p::before {
+        content: '📕 ';
+    }
+}
+
+/* 토글 디자인 */
+summary {
+    cursor: pointer;
+    background-color: #EFF1F3;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+
+    &::marker {
+        content: '🔖 ';
+    }
+}
+
+details {
+}
+
+summary:hover {
+    background-color: #e3e4e6;
+}
+
+/* 작은 코드 블럭 */
+code {
+    font-family: 'Pretendard';
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #EFF1F3;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+}
+
 .project_card_container {
     cursor: pointer;
     top: 0px;
@@ -12,6 +75,7 @@
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+    height: 450px;
 
 
 
@@ -34,11 +98,11 @@
     }
 
     .tags {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
         display: flex;
         gap: 5px;
-        margin-top: 20px;
-        margin-left: 10px;
-        margin-bottom: 10px;
         div {
             border-radius: 5px;
             padding: 5px;
@@ -66,17 +130,6 @@
     }
 }
 
-.project_detail_modal {
-    border-radius: 10px;
-    margin-top: 50px;
-    z-index: 600;
-    width: 95%;
-    left: 0px;
-    background-color: white;
-    position: fixed;
-    top: 0px;   
-    margin-left: 2.5%;
-}
 
 .project_detail_header {
     padding: 20px;
@@ -118,12 +171,25 @@
 }
 
 .project_detail_background {
+    overflow-y: scroll;
     z-index: 500;
     width: 100%;
     height: 100vh;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0px;
     left: 0px;
-    opacity: 0.3;
+    
+    .project_detail_modal {
+        border-radius: 10px;
+        margin-top: 50px;
+        z-index: 600;
+        width: 84%;
+        left: 0px;
+        background-color: white;
+        position: relative;
+        top: 0px;   
+        margin-bottom: 50px;
+        margin-left: 8%;
+    }
 }

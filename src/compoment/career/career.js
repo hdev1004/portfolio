@@ -1,12 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./css/career.module.css";
 import Projects from "./projects";
+import Education from "./education";
+import { useInView } from "react-intersection-observer";
+import {motion} from "framer-motion"
 
 const Career = () => {
-    const career_target = useRef(null);
+    const career_target =useRef(null);
     const project_target = useRef(null);
     const education_target = useRef(null);
     const [currentTarget, setCurrentTarget] = useState('career');
+    const [ref, inView] = useInView({
+        triggerOnce: false, // 요소가 한 번만 애니메이션되도록 설정
+        threshold: 0.1 // 요소의 10%가 보일 때 트리거
+    });
+
+    const [ref2, inView2] = useInView({
+        triggerOnce: false, // 요소가 한 번만 애니메이션되도록 설정
+        threshold: 0.1 // 요소의 10%가 보일 때 트리거
+    });
+
+    const [ref3, inView3] = useInView({
+        triggerOnce: false, // 요소가 한 번만 애니메이션되도록 설정
+        threshold: 0.1 // 요소의 10%가 보일 때 트리거
+    });
+
+    const [ref4, inView4] = useInView({
+        triggerOnce: false, // 요소가 한 번만 애니메이션되도록 설정
+        threshold: 0.1 // 요소의 10%가 보일 때 트리거
+    });
+
+    const variants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 }
+    };
 
 
     const moveScroll = (type) => {
@@ -34,7 +61,7 @@ const Career = () => {
         const project = project_target.current.getBoundingClientRect();
         const education = education_target.current.getBoundingClientRect();
         
-        if(education.top < 0) {
+        if(education.top < 200) {
             setCurrentTarget('education');
             return;
         } 
@@ -57,14 +84,29 @@ const Career = () => {
 
     return (
         <div className={styles.career_container}>
-            <div className={styles.career_menu}>
+            <motion.div 
+                  ref={ref4}
+                  initial="hidden"
+                  animate={inView4 ? "visible" : "hidden"}
+                  variants={variants}
+                  transition={{ duration: 0.5 }}
+                className={styles.career_menu}>
                 <div className={currentTarget === 'career' ? styles.menu_active : styles.menu_inActive} onClick={() => {moveScroll("career")}}>Career</div>
                 <div className={currentTarget === 'project' ? styles.menu_active : styles.menu_inActive} onClick={() => {moveScroll("project")}}>Project</div>
                 <div className={currentTarget === 'education' ? styles.menu_active : styles.menu_inActive} onClick={() => {moveScroll("education")}}>Education</div>
-            </div>
+            </motion.div>
 
-            <div id="career" className={styles.career} ref={career_target}>
-                <div className={styles.career_card}>
+            <div 
+                
+                ref={career_target}
+                id="career" className={styles.career}>
+                <motion.div 
+                    ref={ref}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    variants={variants}
+                    transition={{ duration: 0.5 }}
+                    className={styles.career_card}>
                     <div className={styles.career_date}>
                         2024.03 - 2024.06
                     </div>
@@ -84,9 +126,14 @@ const Career = () => {
                             <li>3개 이상의 기업 사이트 개발</li>
                         </ul>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className={styles.career_card}>
+                <motion.div  ref={ref}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    variants={variants}
+                    transition={{ duration: 0.5 }}
+                    className={styles.career_card}>
                     <div className={styles.career_date}>
                         2023.03 - 2024.03
                     </div>
@@ -124,18 +171,31 @@ const Career = () => {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </motion.div>
                 
             </div>
 
             
             <div id="project" className={styles.project} ref={project_target}>
+                <motion.div ref={ref2}
+                    initial="hidden"
+                    animate={inView2 ? "visible" : "hidden"}
+                    variants={variants}
+                    transition={{ duration: 0.5 }}>
                 <Projects/>
+
+                </motion.div >
             </div>
 
             
             <div id="education" className={styles.education} ref={education_target}>
-                에듀케이션
+                <motion.div ref={ref3}
+                    initial="hidden"
+                    animate={inView3 ? "visible" : "hidden"}
+                    variants={variants}
+                    transition={{ duration: 0.5 }}>
+                <Education/>
+                </motion.div>
             </div>
         </div>
     )

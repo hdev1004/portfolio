@@ -5,6 +5,7 @@ import MainCover from "../compoment/main/main_cover";
 import AboutMe from "../compoment/aboutMe/aboutme";
 import Career from "../compoment/career/career";
 import ReactMarkdown  from 'react-markdown'
+import End from "../compoment/career/end";
 
 const Main = () => {
     function solveQuadraticEquation(points) {
@@ -152,7 +153,7 @@ const Main = () => {
                 ) : (
                     <div style={{position: "relative"}}>
                         <div className={styles.main_ball_container}>
-                            <span style={{color: "white"}}>{x}, {y}</span>
+                            <span style={{color: "white"}}></span>
                             <motion.div
                             animate={isStep4 ? {
                                 width: `5000px`,
@@ -171,18 +172,18 @@ const Main = () => {
                         </div>
                         
                         <div className={styles.wave_container}>
-                                <svg class={styles.waves} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                                <defs>
-                                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                                </defs>
-                                <g className={styles.parallax}>
-                                <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-                                <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-                                <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-                                <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
-                                </g>
-                                </svg>
+                            <svg class={styles.waves} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                            <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                            </defs>
+                            <g className={styles.parallax}>
+                            <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                            <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
+                            </g>
+                            </svg>
                         </div>
                     </div>
 
@@ -197,20 +198,21 @@ const Main = () => {
                 )
             }
 
-           <AboutMe/>
+            <div className={styles.about_wave}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,154.7C672,171,768,213,864,213.3C960,213,1056,171,1152,165.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
            
+            </div>
+          <AboutMe/>
+           
+          
            
            <Career/>
-           <div style={{width: "100%", height: "100vh", backgroundColor: "lightgray", zIndex: 100, position: "relative"}}>
-                <div style={{position: "sticky", top: "10px"}}>
-                    Header
 
-                </div>
-           </div>
-           <div style={{width: "100%", height: "100vh", backgroundColor: "lightblue", zIndex: 100, position: "relative"}}>
-           </div>
-           <div style={{width: "100%", height: "100vh", backgroundColor: "lightgray", zIndex: 100, position: "relative"}}>
-           </div>
+            <div className={styles.end_wave}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,154.7C672,171,768,213,864,213.3C960,213,1056,171,1152,165.3C1248,160,1344,192,1392,208L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+
+            </div>
+           <End/>
 
         </div>
     )

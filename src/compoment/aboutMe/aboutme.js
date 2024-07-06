@@ -1,10 +1,42 @@
+
+import { useInView } from "react-intersection-observer";
 import styles from "./css/aboutme.module.css";
+import { motion } from "framer-motion";
 
 const AboutMe = () => {
+    
+    const [ref, inView] = useInView({
+        triggerOnce: false, // 요소가 한 번만 애니메이션되도록 설정
+        threshold: 0.1 // 요소의 10%가 보일 때 트리거
+    });
+
+    const [ref2, inView2] = useInView({
+        triggerOnce: false, // 요소가 한 번만 애니메이션되도록 설정
+        threshold: 0.1 // 요소의 10%가 보일 때 트리거
+    });
+
+
+    const variants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 }
+    };
+
     return (
         <div className={styles.career_container}>
-            <div className={styles.carrer_title}>💁‍♂️ About Me</div>
-            <div className={styles.carrer_interview}>
+            <motion.div 
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={variants}
+                transition={{ duration: 0.5 }}
+                className={styles.carrer_title}>💁‍♂️ About Me</motion.div>
+            <motion.div 
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={variants}
+                transition={{ duration: 0.5 }}
+                className={styles.carrer_interview}>
                 <div className={styles.interview_card}>
                     <div className={styles.card_title}>Q. 개발자를 하게 된 이유가 있다면?</div>
                     <div className={styles.card_contents}>
@@ -48,14 +80,26 @@ const AboutMe = () => {
                         가끔 영화관에서 영화를 보는 문화생활도 하며, 매년 연말에 콘서트에 가고 있습니다.
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             <br/>
 
-            <div className={styles.carrer_title} style={{
+            <motion.div 
+                ref={ref2}
+                initial="hidden"
+                animate={inView2 ? "visible" : "hidden"}
+                variants={variants}
+                transition={{ duration: 0.5 }}
+                className={styles.carrer_title} style={{
                 paddingTop: "20px"
-            }}>⚒️ Skills & Tools</div>
-            <div className={styles.carrer_skills}>
+            }}>⚒️ Skills & Tools</motion.div>
+            <motion.div 
+                    ref={ref2}
+                    initial="hidden"
+                    animate={inView2 ? "visible" : "hidden"}
+                    variants={variants}
+                    transition={{ duration: 0.5 }}
+                    className={styles.carrer_skills}>
                 <div className={styles.skills_card}>
                     <div className={styles.skills_title}>
                         FrontEnd
@@ -110,7 +154,7 @@ const AboutMe = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }
