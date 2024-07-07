@@ -152,9 +152,38 @@ code {
     }
 
     .close_btn {
-        position: absolute;
-        right: 20px;
+        z-index: 1000;
+        position: fixed;
+        right: 35px;
+        top: 53px;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .close_btn_card {
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border-radius: 100px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 35px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        div {
+            width: 100px;
+            top: 65px;
+            position: absolute;
+            text-align: center;
+            color: black;
+        }
     }
 }
 .project_tags {
@@ -184,12 +213,12 @@ code {
         border-radius: 10px;
         margin-top: 50px;
         z-index: 600;
-        width: 84%;
+        width: calc(100% - 200px);
         left: 0px;
         background-color: white;
         position: relative;
         top: 0px;   
         margin-bottom: 50px;
-        margin-left: 8%;
+        margin-left: 100px;
     }
 }
