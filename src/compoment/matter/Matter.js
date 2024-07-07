@@ -18,6 +18,7 @@ const MatterComponent = () => {
   let leftWall = null;
   let rightWall = null;
   let topWall = null;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const [score, setScore] = useState(0);
 
   const cnt = 0;
@@ -163,19 +164,21 @@ const MatterComponent = () => {
     /**
      * 마우스 관련 이벤트 추가
      */
-    const mouse = Matter.Mouse.create(render.canvas);
-    const mouseConstraint = Matter.MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: {
-        //stiffness: 0.2,
-        render: {
-          visible: false
+    if(!isMobile) {
+      const mouse = Matter.Mouse.create(render.canvas);
+      const mouseConstraint = Matter.MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          //stiffness: 0.2,
+          render: {
+            visible: false
+          }
         }
-      }
-    });
-
-    Matter.World.add(engine.world, mouseConstraint);
-    render.mouse = mouse;
+      });
+  
+      Matter.World.add(engine.world, mouseConstraint);
+      render.mouse = mouse;
+    }
 
     setGlobalEngine(engine)
     Matter.Engine.run(engine);
@@ -196,12 +199,14 @@ const MatterComponent = () => {
 
   const handleScroll = (e) => {
     if(e.deltaY > 0) {
-      window.scrollBy({
-        top: 30,
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth"
       }); // 세로로 100px 스크롤 다운
     } else {
-      window.scrollBy({
-        top: -30,
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       }); // 세로로 100px 스크롤 업
     }
   
