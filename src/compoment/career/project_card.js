@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeRaw from 'rehype-raw';
+import remarkGfm from "remark-gfm";
 
 const ProjectCard = ({info}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +77,7 @@ const ProjectCard = ({info}) => {
                                         width: "80%",
                                         paddingBottom: "20px"
                                     }}>
-                                       <ReactMarkdown  rehypePlugins={[rehypeRaw]} components={{
+                                       <ReactMarkdown  remarkPlugins={remarkGfm} rehypePlugins={[rehypeRaw]} components={{
                                         code(props) {
                                             const {children, className, node, ...rest} = props
                                             const match = /language-(\w+)/.exec(className || '')
