@@ -146,57 +146,9 @@ const Main = () => {
 
     return (
         <div className={styles.main_container}>
-            {
-                
-                isEnd ? (
-                    <MainCover/>
-                ) : (
-                    <div style={{position: "relative"}}>
-                        <div className={styles.main_ball_container}>
-                            <span style={{color: "white"}}></span>
-                            <motion.div
-                            animate={isStep4 ? {
-                                width: `5000px`,
-                                height: `5000px`,
-                                left: `-2500px`,
-                                bottom: `-2500px`,
-                                borderRadius: `100%`
-                            } : isStep3 ? {bottom: `${moveY}px`, width: `200px`, height: `200px`} : {}}
-                            style={{left: `${x - 100}px`,  bottom: `${y}px` }}
-                            transition={{
-                                duration: 1
-                            }}
-                            className={styles.main_ball}
-                            />
-
-                        </div>
-                        
-                        <div className={styles.wave_container}>
-                            <svg class={styles.waves} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                            <defs>
-                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                            </defs>
-                            <g className={styles.parallax}>
-                            <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-                            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-                            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-                            <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
-                            </g>
-                            </svg>
-                        </div>
-                    </div>
-
-                )
-            }
-            {
-                isEnd ? (
-                    <div className={styles.main_blank}>
-                    </div>
-                ) : (
-                    <></>
-                )
-            }
+            <MainCover/>
+            <div className={styles.main_blank}>
+            </div>
 
             <div className={styles.about_wave}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,154.7C672,171,768,213,864,213.3C960,213,1056,171,1152,165.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>

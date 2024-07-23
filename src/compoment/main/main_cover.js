@@ -6,7 +6,7 @@ import MatterComponent from "../matter/Matter";
 
 const MainCover = () => {
     const [isStep1, setIsStep1] = useState(false);
-    
+    const [backgroundClick, setBackgroundClick] = useState(false);    
 
     useEffect(() => {
         setTimeout(() => {
@@ -66,6 +66,13 @@ const MainCover = () => {
                 variants={variants}
                 transition={{ duration: 0.5 }}
                 >
+                <div className={backgroundClick ? styles.scroll_background_true : styles.scroll_background} onClick={() => {setBackgroundClick(true)}} >
+                    <div className={styles.scroll_title}>
+                        <p>스크롤하여 주세요</p>
+                        <p>(클릭하면 사라집니다)</p>
+                    </div>
+                    <div></div>
+                </div>
                 <div className={styles.main_text_container}>
                     <div className={styles.main_text_background} style={
                         isStep1 ? {
@@ -78,10 +85,10 @@ const MainCover = () => {
                     <p className={styles.main_title}>웹 개발자 <b>김진원</b> 입니다.</p>
 
                     <div className={styles.main_sub_title} style={{textAlign:"center"}}>
-                        포기하지 않고 공부하며 성장하자는 <b>마인드</b>로, <br/>
-                        꾸준히 발전해 나아가는 <b>개발자</b> 입니다.
+                        <p>포기하지 않고 공부하며 성장하자는 <b>마인드</b>로, </p>
+                        <p>꾸준히 발전해 나아가는 <b>개발자</b> 입니다.</p>
                     </div>
-
+                    
                 </div>
 
 

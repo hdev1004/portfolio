@@ -49,8 +49,11 @@
 
 .main_title {
   transition: 0.3s;
-    z-index: 0;
-    font-size: 30px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+    z-index: 1000;
+    font-size: 40px;
 }
 
 .main_profile_image_container {
@@ -89,9 +92,65 @@
     }
 }
 
+.scroll_background {
+  width: 100vw;
+  height: 100vh;
+  transition: 0.3s;
+  background-color: rgba(0, 0, 0, 0.329);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .scroll_title {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.411);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+
+}
+.scroll_background_true {
+  width: 100vw;
+  height: 100vh;
+  transition: 0.3s;
+  background-color: rgba(0, 0, 0, 0.329);
+  position: absolute;
+  top: -1000px;
+  left: 0px;
+  z-index: 2000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  .scroll_title {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.411);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+
 
 .main_sub_title {
-    z-index: 0;
+  transition: 0.3s;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  border-radius: 20px;
+    z-index: 100;
+    font-size: 25px;
     margin-top: -20px;
     transition: 0.3s;
 }
