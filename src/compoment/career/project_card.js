@@ -71,6 +71,47 @@ const ProjectCard = ({info}) => {
                                         <div>{info.team}</div>
                                     </div>
 
+                                    <div className={styles.deploy_container}>
+                                        {
+                                            info.link ? info.link.map((link_item, idx) => (
+                                                <a href={link_item} target="_blank">
+                                                    <div className={styles.close_btn_card}>
+                                                        <img src="/images/link.png" alt="link"/>    
+                                                    <div>배포 링크 { idx + 1}</div>
+                                                    </div>
+                                                </a>
+                                            )) : (
+                                                <></>
+                                            )
+                                        }
+
+                                        {
+                                            info.github ? (
+                                                <a href={info.github} target="_blank">
+                                                    <div className={styles.close_btn_card}>
+                                                            <img src="/images/github.png" alt="github"/>
+                                                        <div>깃허브 링크</div>
+                                                    </div>
+                                                </a>
+                                            ) : (
+                                                <></>
+                                            )
+                                        }
+
+                                        {
+                                            info.blog ? (
+                                            <a href={info.blog} target="_blank">
+                                                <div className={styles.close_btn_card}>
+                                                        <img src="/images/blog.png" alt="blog"/>
+                                                    <div>관련 블로그</div>
+                                                </div>
+                                            </a>
+                                            ) : (
+                                                <></>
+                                            )
+                                        }
+                                    </div>
+
                                     <div 
                                     className={styles.editor_container}
                                     style={{
@@ -105,14 +146,14 @@ const ProjectCard = ({info}) => {
                                         </div>
 
                                         {
-                                            info.link ? (
-                                                <a href={info.link} target="_blank">
+                                            info.link ? info.link.map((link_item, idx) => (
+                                                <a href={link_item} target="_blank">
                                                     <div className={styles.close_btn_card}>
                                                         <img src="/images/link.png" alt="link"/>    
-                                                    <div>배포 링크</div>
+                                                    <div>배포 링크 { idx + 1}</div>
                                                     </div>
                                                 </a>
-                                            ) : (
+                                            )) : (
                                                 <></>
                                             )
                                         }

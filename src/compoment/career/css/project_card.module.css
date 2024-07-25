@@ -110,6 +110,17 @@ code {
     }
 }
 
+.deploy_container {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+
+    .close_btn_card {
+        border: 1px solid lightgray;
+        box-shadow: 0px 0px 3px lightgray;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     /* Desktop */
   }
