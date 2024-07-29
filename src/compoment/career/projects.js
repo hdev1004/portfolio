@@ -101,14 +101,14 @@ const Projects = () => {
         blog: "https://hdev1004.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%ED%82%A4%EB%B3%B4%EB%93%9C-%EB%85%B9%ED%99%94-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%9E%90",
         github: "https://github.com/hdev1004/RecordAndPlay"
     }, {
-        title: '화살피하기 게임 사이트',
+        title: '자바스크립트로 만든 화살피하기 게임',
         subTitle: '죽림고수와 사과와 화살에서 영감을 받은 사이트 입니다.',
         tags: ['개인', '자바스크립트', '사이드'],
         date: '2021.11 - 2021.12',
         team: '1인',
         fileName: '화살피하기.md',
         thumbnail: '화살피하기.png',
-        link: ["https://portfolio-a7824.web.app/Avoid_Arrows/index.html"],
+        link: ["https://arrow77.web.app"],
         blog: "https://blog.naver.com/zlatmgpdjtiq/222590943472",
         github: "https://github.com/hdev1004/AvoidArrowGame"
     }, {
