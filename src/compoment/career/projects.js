@@ -80,17 +80,7 @@ const Projects = () => {
         blog: null,
         github: "https://github.com/ponikoii/qstudy_front",
         link: ["http://210.114.19.32:8080/login"]
-    }, {
-        title: '빽다방 클론코딩',
-        subTitle: '5일 정도의 개발시간을 갖은 빽다방 클론코딩 입니다.',
-        tags: ['개인', '모바일', '사이드'],
-        date: '2024.01 - 2024.02',
-        team: '1인',
-        fileName: '빽다방.md',
-        thumbnail: '빽다방.gif',
-        blog: null,
-        github: "https://github.com/hdev1004/paik_coffee"
-    }, {
+    },  {
         title: '키보드 녹화 프로그램',
         subTitle: '컴퓨터를 사용하면서 필요할 수 있는 키보드 녹화 라이브러리 입니다.',
         tags: ['개인', '파이썬', '사이드'],
