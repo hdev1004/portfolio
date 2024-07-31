@@ -1,31 +1,28 @@
-# 자바스크립트로 만든 화살피하기 게임
+# 리액트 기반의 포트폴리오
 
 ### 0. 프로젝트 소개
-화살 피하기 게임은 [사과 바라보기](https://www.youtube.com/watch?v=4IwcqHazkfY) 이것과 [죽림고수게임](https://vidkidz.tistory.com/107) 에서 영감을 받았습니다. <br/>
-비슷하면서도 다른 성격의 프로젝트를 합쳐 보다 재밌는 컨텐츠로 제작하게 됐습니다. <br/>
 
-화살 피하기 게임은 Javascript Canvas로 이루어져 있으며, 외부 라이브러리는 사용하지 않았습니다 😊 <br/>
+개발자 취업준비를 위한 포트폴리오 입니다! 😊 <br/>
 
-간단하게 즐길 수 있으면서도, 많이 무겁지 않게 제작했습니다. <br/>
+사용된 기술로는 ```React```, ```Framer Motion```, ```MatterJS``` 입니다
 
-모바일의 경우 튜토리얼을 제외하고는 작동할 수 있도록 구현해놓았습니다 <br/>
-
-모바일은 기종에 따라 다르게 보일 수 있으니.. 유의하시길 바랍니다. <br/>
-
-재밌게 즐겨주세요 😊
-
+반응형을 통해 모바일에서도 쉽게 열람이 가능합니다!
 
 <br/>
 
 ### 1. 주요기능
 
-<b>Client</b>
-1. 튜토리얼
-2. 화살피하기
-3. 아이템
-4. 랭킹보드
-5. 배경음
+<b>메인 화면</b>
+1. 메인화면의 중력기능
+2. About Me
+3. Skills & Tools
+4. Career
+5. Project
+6. Education
 
+메인화면의 중력 기능을 넣기 위해 ```MatterJS```를 이용했습니다. <br/>
+각각의 알파벳 모양을 나타내기 위해, Svg Pattern 을 사용했습니다. <br/>
+마우스로 클릭하여 알파벳들을 옮길 수 있습니다 😊
 
 <br/>
 
@@ -39,34 +36,37 @@
 ### 4. 기술 스택
 
 🖥️ 프론트엔드 
-```HTML```, ```CSS```, ```Javascript```
+```React```, ```Framer Motion```, ```MatterJS```
 
-🖥️ 백엔드
-```firebase```
+🖥️ 클라우드 
+```Firebase```
 
 <br/>
 
 
 ### 5. 참여 기간
 
-프로젝트 시작일 : ```2021년 11월 01일``` <br/>
-프로젝트 종료일 : ```2021년 12월 31일``` <br/>
+프로젝트 시작일 : ```2024년 06월 05일``` <br/>
+프로젝트 종료일 : ```진행 중``` <br/>
 
 
 <br/>
 
 ### 6. 개발 진행 상황
-  - 1 튜토리얼 ✅
-  - 2 화살피하기 ✅
-  - 3 아이템 ✅
-  - 4 랭킹보드 ✅
-  - 5 배경음 ✅
- 
+
+  - 메인화면의 중력기능 ✅
+  - About Me ✅
+  - Skills & Tools ✅
+  - Career ✅
+  - Project ❌(수정 및 추가 중)
+  - Education ✅
  
 <br/>
 
 ### 7. Demo Page
 
-🔗 https://arrow77.web.app
+🔗 https://teddy0210.web.app
 
-![image](https://github.com/user-attachments/assets/b0042a68-b071-4b07-be6c-b08340288878)
+<img src="https://github.com/hdev1004/vue-boilerplate/assets/59737252/d32ec255-3a70-428e-902c-88443603ecaf" width="50%"/>
+
+
